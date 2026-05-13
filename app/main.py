@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 from app import models
 from app.database import Base, engine
-from app.routers import categories
+from app.routers import authors, categories
 
 Base.metadata.create_all(bind=engine)
 
@@ -12,6 +12,7 @@ app = FastAPI(
 )
 
 app.include_router(categories.router, prefix="/api/v1")
+app.include_router(authors.router, prefix="/api/v1")
 
 
 @app.get("/api/v1/health")
