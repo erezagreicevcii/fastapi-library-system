@@ -2,7 +2,8 @@ from fastapi import FastAPI
 
 from app import models
 from app.database import Base, engine
-from app.routers import authors, categories, members
+from app.routers import authors, categories, members, books
+
 
 Base.metadata.create_all(bind=engine)
 
@@ -14,6 +15,7 @@ app = FastAPI(
 app.include_router(categories.router, prefix="/api/v1")
 app.include_router(authors.router, prefix="/api/v1")
 app.include_router(members.router, prefix="/api/v1")
+app.include_router(books.router, prefix="/api/v1")
 
 
 @app.get("/api/v1/health")
