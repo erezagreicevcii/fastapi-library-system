@@ -101,7 +101,7 @@ def search_books(
     if published_before is not None:
         query = query.filter(models.Book.published_year < published_before)
 
-    total = query.distinct(models.Book.id).count()
+    total = query.distinct().count()
 
     if sort_by == "title":
         sort_column = models.Book.title
@@ -118,7 +118,7 @@ def search_books(
     offset = (page - 1) * page_size
 
     books = (
-        query.distinct(models.Book.id)
+        query.distinct()
         .offset(offset)
         .limit(page_size)
         .all()
