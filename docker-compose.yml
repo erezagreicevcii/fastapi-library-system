@@ -1,0 +1,7 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8005:8005"
+    environment:
+      LIBRARY_API_KEY: dev-secret-key
